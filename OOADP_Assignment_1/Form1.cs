@@ -14,11 +14,11 @@ namespace OOADP_Assignment_1
     {
         //Parameters
         public bool SensorToggled = false;
+        public bool LoggingToggled = false;
         public int SensorValue;
         public int counter = 0;
         public int counterMod;
         public double countdown = 2.3;
-
 
         //Generate Sensors
         AnalogSensor Analog1 = new AnalogSensor();
@@ -35,31 +35,25 @@ namespace OOADP_Assignment_1
         DigitalSensor Digital3 = new DigitalSensor();
         DigitalSensor Digital4 = new DigitalSensor();
 
+        //Initialization for Form1
         public Form1()
         {
             InitializeComponent();
             cmbSensorPick.SelectedIndex = 0; //Initial Value for Combobox
-
-
-
         }
-
 
         //Methods
         Random rndValue = new Random();
         public double SensorRandomValueAnalog()
         {
-            
             double rnd = Convert.ToDouble(rndValue.Next(0, 4194304)) / 4194304;
-            
             return rnd;
         }
 
-        public int SensorRandomValueDigital()
+        public double SensorRandomValueDigital()
         {
             Random rndValue = new Random();
-            int rnd = rndValue.Next(0, 1);
-
+            double rnd = Convert.ToDouble(rndValue.Next(0, 2));
             return rnd;
         }
 
@@ -71,7 +65,6 @@ namespace OOADP_Assignment_1
                 SensorToggled = true;
                 tmrNextSample.Start();
                 chckSensor.Checked = true;
-
             }
             else
             {
@@ -79,29 +72,22 @@ namespace OOADP_Assignment_1
                 tmrNextSample.Stop();
                 chckSensor.Checked = false;
             }
-
         }
+
         //Classes
         public class AnalogSensor
         {
             public double value;
-
-
             public AnalogSensor()
             {
-                
-
             }
         }
 
         public class DigitalSensor
         {
             public double value;
-
             public DigitalSensor()
             {
-
-
             }
         }
 
@@ -113,18 +99,19 @@ namespace OOADP_Assignment_1
             if (SensorToggled == true)
             {
 
-                txtNextSample.Text = Convert.ToString(Math.Round( countdown, 1));
-                    countdown -= 0.1;
+                txtNextSample.Text = Convert.ToString(Math.Round(countdown, 1));
+                countdown -= 0.1;
                 if (counterMod == 1)
                 {
                     counter = 0;
-                    
+
                     countdown = 2.3;
                     switch (cmbSensorPick.SelectedIndex)
                     {
                         case 0:
                             Analog1.value = SensorRandomValueAnalog();
                             txtValue.Text = Convert.ToString(Analog1.value);
+
                             break;
 
                         case 1:
@@ -180,10 +167,24 @@ namespace OOADP_Assignment_1
                             Digital4.value = SensorRandomValueDigital();
                             txtValue.Text = Convert.ToString(Digital4.value);
                             break;
-
-
                     }
                 }
+            }
+        }
+
+        private void btnDataLogging_Click(object sender, EventArgs e)
+        {
+            if (LoggingToggled == false)
+            {
+                LoggingToggled = true;
+                
+                chckLoggingData.Checked = true;
+            }
+            else
+            {
+                LoggingToggled = false;
+                
+                chckSensor.Checked = false;
             }
         }
     }

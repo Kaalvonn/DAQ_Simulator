@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txt = new System.Windows.Forms.TextBox();
             this.cmbSensorPick = new System.Windows.Forms.ComboBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.lblSensor = new System.Windows.Forms.Label();
@@ -37,22 +37,24 @@
             this.btnToggleSensor = new System.Windows.Forms.Button();
             this.chckSensor = new System.Windows.Forms.CheckBox();
             this.btnDataLogging = new System.Windows.Forms.Button();
-            this.chckDataLogging = new System.Windows.Forms.CheckBox();
+            this.chckLoggingData = new System.Windows.Forms.CheckBox();
             this.txtNextSample = new System.Windows.Forms.TextBox();
             this.lblNextSample = new System.Windows.Forms.Label();
             this.lblNextLogging = new System.Windows.Forms.Label();
             this.txtNextLogging = new System.Windows.Forms.TextBox();
             this.tmrNextSample = new System.Windows.Forms.Timer(this.components);
-            this.lblTest = new System.Windows.Forms.Label();
+            this.lblLogNumber = new System.Windows.Forms.Label();
+            this.txtLogNumber = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox13
+            // txt
             // 
-            this.textBox13.Location = new System.Drawing.Point(268, 12);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(100, 162);
-            this.textBox13.TabIndex = 0;
+            this.txt.Location = new System.Drawing.Point(268, 23);
+            this.txt.Multiline = true;
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(100, 151);
+            this.txt.TabIndex = 0;
             // 
             // cmbSensorPick
             // 
@@ -129,16 +131,17 @@
             this.btnDataLogging.TabIndex = 7;
             this.btnDataLogging.Text = "Toggle Logging";
             this.btnDataLogging.UseVisualStyleBackColor = true;
+            this.btnDataLogging.Click += new System.EventHandler(this.btnDataLogging_Click);
             // 
-            // chckDataLogging
+            // chckLoggingData
             // 
-            this.chckDataLogging.AutoSize = true;
-            this.chckDataLogging.Enabled = false;
-            this.chckDataLogging.Location = new System.Drawing.Point(114, 155);
-            this.chckDataLogging.Name = "chckDataLogging";
-            this.chckDataLogging.Size = new System.Drawing.Size(15, 14);
-            this.chckDataLogging.TabIndex = 8;
-            this.chckDataLogging.UseVisualStyleBackColor = true;
+            this.chckLoggingData.AutoSize = true;
+            this.chckLoggingData.Enabled = false;
+            this.chckLoggingData.Location = new System.Drawing.Point(114, 155);
+            this.chckLoggingData.Name = "chckLoggingData";
+            this.chckLoggingData.Size = new System.Drawing.Size(15, 14);
+            this.chckLoggingData.TabIndex = 8;
+            this.chckLoggingData.UseVisualStyleBackColor = true;
             // 
             // txtNextSample
             // 
@@ -178,24 +181,43 @@
             // 
             this.tmrNextSample.Tick += new System.EventHandler(this.tmrNextSample_Tick);
             // 
-            // lblTest
+            // lblLogNumber
             // 
-            this.lblTest.AutoSize = true;
-            this.lblTest.Location = new System.Drawing.Point(29, 90);
-            this.lblTest.Name = "lblTest";
-            this.lblTest.Size = new System.Drawing.Size(28, 13);
-            this.lblTest.TabIndex = 13;
-            this.lblTest.Text = "Test";
+            this.lblLogNumber.AutoSize = true;
+            this.lblLogNumber.Location = new System.Drawing.Point(9, 106);
+            this.lblLogNumber.Name = "lblLogNumber";
+            this.lblLogNumber.Size = new System.Drawing.Size(75, 13);
+            this.lblLogNumber.TabIndex = 15;
+            this.lblLogNumber.Text = "# of Loggings:";
+            // 
+            // txtLogNumber
+            // 
+            this.txtLogNumber.Location = new System.Drawing.Point(12, 122);
+            this.txtLogNumber.Name = "txtLogNumber";
+            this.txtLogNumber.ReadOnly = true;
+            this.txtLogNumber.Size = new System.Drawing.Size(69, 20);
+            this.txtLogNumber.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(265, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Sensor Values:";
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(380, 192);
-            this.Controls.Add(this.lblTest);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLogNumber);
+            this.Controls.Add(this.txtLogNumber);
             this.Controls.Add(this.lblNextLogging);
             this.Controls.Add(this.txtNextLogging);
             this.Controls.Add(this.lblNextSample);
             this.Controls.Add(this.txtNextSample);
-            this.Controls.Add(this.chckDataLogging);
+            this.Controls.Add(this.chckLoggingData);
             this.Controls.Add(this.btnDataLogging);
             this.Controls.Add(this.chckSensor);
             this.Controls.Add(this.btnToggleSensor);
@@ -203,7 +225,7 @@
             this.Controls.Add(this.lblSensor);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cmbSensorPick);
-            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.txt);
             this.Name = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -237,21 +259,23 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txt;
         private System.Windows.Forms.ComboBox cmbSensorPick;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.Label lblSensor;
         private System.Windows.Forms.Label lblMeasurement;
         private System.Windows.Forms.Button btnToggleSensor;
         private System.Windows.Forms.Button btnDataLogging;
-        private System.Windows.Forms.CheckBox chckDataLogging;
+        private System.Windows.Forms.CheckBox chckLoggingData;
         private System.Windows.Forms.TextBox txtNextSample;
         private System.Windows.Forms.Label lblNextSample;
         private System.Windows.Forms.Label lblNextLogging;
         private System.Windows.Forms.TextBox txtNextLogging;
         private System.Windows.Forms.CheckBox chckSensor;
         private System.Windows.Forms.Timer tmrNextSample;
-        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Label lblLogNumber;
+        private System.Windows.Forms.TextBox txtLogNumber;
+        private System.Windows.Forms.Label label1;
     }
 }
 
