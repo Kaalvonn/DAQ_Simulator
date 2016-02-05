@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.cmbSensorPick = new System.Windows.Forms.ComboBox();
             this.txtValue = new System.Windows.Forms.TextBox();
@@ -41,6 +42,8 @@
             this.lblNextSample = new System.Windows.Forms.Label();
             this.lblNextLogging = new System.Windows.Forms.Label();
             this.txtNextLogging = new System.Windows.Forms.TextBox();
+            this.tmrNextSample = new System.Windows.Forms.Timer(this.components);
+            this.lblTest = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox13
@@ -74,7 +77,7 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(153, 23);
+            this.txtValue.Location = new System.Drawing.Point(151, 83);
             this.txtValue.Name = "txtValue";
             this.txtValue.ReadOnly = true;
             this.txtValue.Size = new System.Drawing.Size(69, 20);
@@ -92,7 +95,7 @@
             // lblMeasurement
             // 
             this.lblMeasurement.AutoSize = true;
-            this.lblMeasurement.Location = new System.Drawing.Point(150, 7);
+            this.lblMeasurement.Location = new System.Drawing.Point(148, 67);
             this.lblMeasurement.Name = "lblMeasurement";
             this.lblMeasurement.Size = new System.Drawing.Size(37, 13);
             this.lblMeasurement.TabIndex = 4;
@@ -106,6 +109,7 @@
             this.btnToggleSensor.TabIndex = 5;
             this.btnToggleSensor.Text = "Toggle Sensor";
             this.btnToggleSensor.UseVisualStyleBackColor = true;
+            this.btnToggleSensor.Click += new System.EventHandler(this.btnToggleSensor_Click);
             // 
             // chckSensor
             // 
@@ -138,7 +142,7 @@
             // 
             // txtNextSample
             // 
-            this.txtNextSample.Location = new System.Drawing.Point(153, 88);
+            this.txtNextSample.Location = new System.Drawing.Point(151, 23);
             this.txtNextSample.Name = "txtNextSample";
             this.txtNextSample.ReadOnly = true;
             this.txtNextSample.Size = new System.Drawing.Size(69, 20);
@@ -147,7 +151,7 @@
             // lblNextSample
             // 
             this.lblNextSample.AutoSize = true;
-            this.lblNextSample.Location = new System.Drawing.Point(150, 72);
+            this.lblNextSample.Location = new System.Drawing.Point(148, 7);
             this.lblNextSample.Name = "lblNextSample";
             this.lblNextSample.Size = new System.Drawing.Size(70, 13);
             this.lblNextSample.TabIndex = 10;
@@ -170,9 +174,23 @@
             this.txtNextLogging.Size = new System.Drawing.Size(69, 20);
             this.txtNextLogging.TabIndex = 11;
             // 
+            // tmrNextSample
+            // 
+            this.tmrNextSample.Tick += new System.EventHandler(this.tmrNextSample_Tick);
+            // 
+            // lblTest
+            // 
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(29, 90);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(28, 13);
+            this.lblTest.TabIndex = 13;
+            this.lblTest.Text = "Test";
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(380, 192);
+            this.Controls.Add(this.lblTest);
             this.Controls.Add(this.lblNextLogging);
             this.Controls.Add(this.txtNextLogging);
             this.Controls.Add(this.lblNextSample);
@@ -225,13 +243,15 @@
         private System.Windows.Forms.Label lblSensor;
         private System.Windows.Forms.Label lblMeasurement;
         private System.Windows.Forms.Button btnToggleSensor;
-        private System.Windows.Forms.CheckBox chckSensor;
         private System.Windows.Forms.Button btnDataLogging;
         private System.Windows.Forms.CheckBox chckDataLogging;
         private System.Windows.Forms.TextBox txtNextSample;
         private System.Windows.Forms.Label lblNextSample;
         private System.Windows.Forms.Label lblNextLogging;
         private System.Windows.Forms.TextBox txtNextLogging;
+        private System.Windows.Forms.CheckBox chckSensor;
+        private System.Windows.Forms.Timer tmrNextSample;
+        private System.Windows.Forms.Label lblTest;
     }
 }
 
