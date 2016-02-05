@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txt = new System.Windows.Forms.TextBox();
+            this.txtAllSensors = new System.Windows.Forms.TextBox();
             this.cmbSensorPick = new System.Windows.Forms.ComboBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.lblSensor = new System.Windows.Forms.Label();
@@ -46,15 +46,17 @@
             this.lblLogNumber = new System.Windows.Forms.Label();
             this.txtLogNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tmrNextLogging = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // txt
+            // txtAllSensors
             // 
-            this.txt.Location = new System.Drawing.Point(268, 23);
-            this.txt.Multiline = true;
-            this.txt.Name = "txt";
-            this.txt.Size = new System.Drawing.Size(100, 151);
-            this.txt.TabIndex = 0;
+            this.txtAllSensors.Enabled = false;
+            this.txtAllSensors.Location = new System.Drawing.Point(268, 23);
+            this.txtAllSensors.Multiline = true;
+            this.txtAllSensors.Name = "txtAllSensors";
+            this.txtAllSensors.Size = new System.Drawing.Size(225, 151);
+            this.txtAllSensors.TabIndex = 0;
             // 
             // cmbSensorPick
             // 
@@ -207,9 +209,13 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Sensor Values:";
             // 
+            // tmrNextLogging
+            // 
+            this.tmrNextLogging.Tick += new System.EventHandler(this.tmrNextLogging_Tick);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(380, 192);
+            this.ClientSize = new System.Drawing.Size(505, 192);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLogNumber);
             this.Controls.Add(this.txtLogNumber);
@@ -225,7 +231,7 @@
             this.Controls.Add(this.lblSensor);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cmbSensorPick);
-            this.Controls.Add(this.txt);
+            this.Controls.Add(this.txtAllSensors);
             this.Name = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -259,7 +265,7 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox txt;
+        private System.Windows.Forms.TextBox txtAllSensors;
         private System.Windows.Forms.ComboBox cmbSensorPick;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.Label lblSensor;
@@ -276,6 +282,7 @@
         private System.Windows.Forms.Label lblLogNumber;
         private System.Windows.Forms.TextBox txtLogNumber;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer tmrNextLogging;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OOADP_Assignment_1
 {
@@ -18,7 +19,15 @@ namespace OOADP_Assignment_1
         public int SensorValue;
         public int counter = 0;
         public int counterMod;
+        public int LogNum = 0;
         public double countdown = 2.3;
+        public double LogTimer = 6;
+        public int logCounterMod;
+        public int logCounter = 0;
+        public string LogData = "Analog1:;\t" + "Analog2:;\t" + "Analog3:;\t" + "Analog4:;\t" + "Analog5:;\t" + "Analog6:;\t" + "Analog7:;\t" + "Analog8:;\t" + "Digital1:;\t" + "Digital2:;\t" + "Digital3:;\t" + "Digital4:;"+"\n";
+        public string filepath = "" + "";
+
+
 
         //Generate Sensors
         AnalogSensor Analog1 = new AnalogSensor();
@@ -40,6 +49,7 @@ namespace OOADP_Assignment_1
         {
             InitializeComponent();
             cmbSensorPick.SelectedIndex = 0; //Initial Value for Combobox
+            txtLogNumber.Text = "0";
         }
 
         //Methods
@@ -50,29 +60,12 @@ namespace OOADP_Assignment_1
             return rnd;
         }
 
-        public double SensorRandomValueDigital()
+        public int SensorRandomValueDigital()
         {
-            Random rndValue = new Random();
-            double rnd = Convert.ToDouble(rndValue.Next(0, 2));
+            int rnd = rndValue.Next(0, 2);
             return rnd;
         }
 
-        //Button Events
-        private void btnToggleSensor_Click(object sender, EventArgs e)
-        {
-            if (SensorToggled == false)
-            {
-                SensorToggled = true;
-                tmrNextSample.Start();
-                chckSensor.Checked = true;
-            }
-            else
-            {
-                SensorToggled = false;
-                tmrNextSample.Stop();
-                chckSensor.Checked = false;
-            }
-        }
 
         //Classes
         public class AnalogSensor
@@ -90,7 +83,7 @@ namespace OOADP_Assignment_1
             {
             }
         }
-
+        //Timer tick Sensor
         private void tmrNextSample_Tick(object sender, EventArgs e)
         {
             counter++;
@@ -98,7 +91,6 @@ namespace OOADP_Assignment_1
 
             if (SensorToggled == true)
             {
-
                 txtNextSample.Text = Convert.ToString(Math.Round(countdown, 1));
                 countdown -= 0.1;
                 if (counterMod == 1)
@@ -106,85 +98,99 @@ namespace OOADP_Assignment_1
                     counter = 0;
 
                     countdown = 2.3;
-                    switch (cmbSensorPick.SelectedIndex)
-                    {
-                        case 0:
-                            Analog1.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog1.value);
 
-                            break;
+                    Analog1.value = SensorRandomValueAnalog();
+                    txtAllSensors.Text = "Analog1: " + Convert.ToString(Analog1.value) + "\n";
 
-                        case 1:
-                            Analog2.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog2.value);
-                            break;
+                    Analog2.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog2: " + Convert.ToString(Analog2.value) + "\n");
 
-                        case 2:
-                            Analog3.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog3.value);
-                            break;
+                    Analog3.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog3: " + Convert.ToString(Analog3.value) + "\n");
 
-                        case 3:
-                            Analog4.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog4.value);
-                            break;
-                        case 4:
-                            Analog5.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog5.value);
-                            break;
+                    Analog4.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog4: " + Convert.ToString(Analog4.value) + "\n");
 
-                        case 5:
-                            Analog6.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog6.value);
-                            break;
+                    Analog5.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog5: " + Convert.ToString(Analog5.value) + "\n");
 
-                        case 6:
-                            Analog7.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog7.value);
-                            break;
+                    Analog6.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog6: " + Convert.ToString(Analog6.value) + "\n");
 
-                        case 7:
-                            Analog8.value = SensorRandomValueAnalog();
-                            txtValue.Text = Convert.ToString(Analog8.value);
-                            break;
+                    Analog7.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog7: " + Convert.ToString(Analog7.value) + "\n");
 
-                        case 8:
-                            Digital1.value = SensorRandomValueDigital();
-                            txtValue.Text = Convert.ToString(Digital1.value);
-                            break;
+                    Analog8.value = SensorRandomValueAnalog();
+                    txtAllSensors.AppendText("Analog8: " + Convert.ToString(Analog8.value) + "\n");
 
-                        case 9:
-                            Digital2.value = SensorRandomValueDigital();
-                            txtValue.Text = Convert.ToString(Digital2.value);
-                            break;
+                    Digital1.value = SensorRandomValueDigital();
+                    txtAllSensors.AppendText("Digital1: " + Convert.ToString(Digital1.value) + "\n");
 
-                        case 10:
-                            Digital3.value = SensorRandomValueDigital();
-                            txtValue.Text = Convert.ToString(Digital3.value);
-                            break;
+                    Digital2.value = SensorRandomValueDigital();
+                    txtAllSensors.AppendText("Digital2: " + Convert.ToString(Digital2.value) + "\n");
 
-                        case 11:
-                            Digital4.value = SensorRandomValueDigital();
-                            txtValue.Text = Convert.ToString(Digital4.value);
-                            break;
-                    }
+                    Digital3.value = SensorRandomValueDigital();
+                    txtAllSensors.AppendText("Digital3: " + Convert.ToString(Digital3.value) + "\n");
+
+                    Digital4.value = SensorRandomValueDigital();
+                    txtAllSensors.AppendText("Digital4: " + Convert.ToString(Digital4.value) + "\n");
                 }
             }
         }
 
+
+        //Buttons
+        private void btnToggleSensor_Click(object sender, EventArgs e)
+        {
+            if (SensorToggled == false)
+            {
+                SensorToggled = true;
+                tmrNextSample.Start();
+                chckSensor.Checked = true;
+            }
+            else
+            {
+                SensorToggled = false;
+                tmrNextSample.Stop();
+                chckSensor.Checked = false;
+            }
+        }
         private void btnDataLogging_Click(object sender, EventArgs e)
         {
             if (LoggingToggled == false)
             {
                 LoggingToggled = true;
-                
+                tmrNextLogging.Start();
                 chckLoggingData.Checked = true;
             }
             else
             {
                 LoggingToggled = false;
-                
+                tmrNextLogging.Stop();
                 chckSensor.Checked = false;
+            }
+        }
+        //Timer Tick Logging
+        private void tmrNextLogging_Tick(object sender, EventArgs e)
+        {
+
+            logCounter++;
+            logCounterMod = logCounter / 60;
+            if (LoggingToggled)
+            {
+                LogTimer -= 0.1;
+                txtNextLogging.Text = Convert.ToString(Math.Round(LogTimer, 1));
+                if (logCounterMod == 1)
+                {
+                    logCounter = 0;
+                    LogNum++;
+                    txtLogNumber.Text = Convert.ToString(LogNum);
+                    LogTimer = 6;
+
+                    LogData = Analog1.value.ToString() + ";\t" + Analog2.value.ToString() + ";\t" + Analog3.value.ToString() + ";\t" + Analog4.value.ToString() + ";\t" + Analog5.value.ToString() + ";\t" + Analog6.value.ToString() + ";\t" + Analog7.value.ToString() + ";\t" + Analog8.value.ToString() + ";\t" + Digital1.value.ToString() + ";\t" + Digital2.value.ToString() + ";\t" + Digital3.value.ToString() + ";\t" + Digital4.value.ToString() + ";\t" + "\n";
+                    File.AppendAllText("DataLog.csv", LogData);
+
+                }
             }
         }
     }
