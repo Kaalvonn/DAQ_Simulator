@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOADP_Assignment_1", "OOADP_Assignment_1\OOADP_Assignment_1.csproj", "{8DE84367-FFB8-4A89-95DD-A1F977DC60CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA1E3886-7B55-4D9A-BC63-032DCD7539FD}"
-	ProjectSection(SolutionItems) = preProject
-		AnalogSensor.cs = AnalogSensor.cs
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
