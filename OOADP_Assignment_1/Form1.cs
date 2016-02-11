@@ -48,7 +48,6 @@ namespace OOADP_Assignment_1
         public Form1()
         {
             InitializeComponent();
-            cmbSensorPick.SelectedIndex = 0; //Initial Value for Combobox
             txtLogNumber.Text = "0";
         }
 
@@ -192,6 +191,12 @@ namespace OOADP_Assignment_1
 
                 }
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            MessageBox.Show("This app is created by Eirik Siljan as part of the course Industrial IT.", "About the application");
         }
     }
 }

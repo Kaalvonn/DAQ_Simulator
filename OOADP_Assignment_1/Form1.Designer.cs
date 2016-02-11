@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.txtAllSensors = new System.Windows.Forms.TextBox();
-            this.cmbSensorPick = new System.Windows.Forms.ComboBox();
-            this.txtValue = new System.Windows.Forms.TextBox();
-            this.lblSensor = new System.Windows.Forms.Label();
-            this.lblMeasurement = new System.Windows.Forms.Label();
             this.btnToggleSensor = new System.Windows.Forms.Button();
             this.chckSensor = new System.Windows.Forms.CheckBox();
             this.btnDataLogging = new System.Windows.Forms.Button();
@@ -47,67 +43,24 @@
             this.txtLogNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrNextLogging = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtAllSensors
             // 
             this.txtAllSensors.Enabled = false;
-            this.txtAllSensors.Location = new System.Drawing.Point(268, 23);
+            this.txtAllSensors.Location = new System.Drawing.Point(268, 46);
             this.txtAllSensors.Multiline = true;
             this.txtAllSensors.Name = "txtAllSensors";
-            this.txtAllSensors.Size = new System.Drawing.Size(225, 151);
+            this.txtAllSensors.Size = new System.Drawing.Size(225, 175);
             this.txtAllSensors.TabIndex = 0;
-            // 
-            // cmbSensorPick
-            // 
-            this.cmbSensorPick.FormattingEnabled = true;
-            this.cmbSensorPick.Items.AddRange(new object[] {
-            "Analog 1",
-            "Analog 2",
-            "Analog 3",
-            "Analog 4",
-            "Analog 5",
-            "Analog 6",
-            "Analog 7",
-            "Analog 8",
-            "Digital 1",
-            "Digital 2",
-            "Digital 3",
-            "Digital 4"});
-            this.cmbSensorPick.Location = new System.Drawing.Point(12, 23);
-            this.cmbSensorPick.Name = "cmbSensorPick";
-            this.cmbSensorPick.Size = new System.Drawing.Size(117, 21);
-            this.cmbSensorPick.TabIndex = 1;
-            // 
-            // txtValue
-            // 
-            this.txtValue.Location = new System.Drawing.Point(151, 83);
-            this.txtValue.Name = "txtValue";
-            this.txtValue.ReadOnly = true;
-            this.txtValue.Size = new System.Drawing.Size(69, 20);
-            this.txtValue.TabIndex = 2;
-            // 
-            // lblSensor
-            // 
-            this.lblSensor.AutoSize = true;
-            this.lblSensor.Location = new System.Drawing.Point(15, 7);
-            this.lblSensor.Name = "lblSensor";
-            this.lblSensor.Size = new System.Drawing.Size(79, 13);
-            this.lblSensor.TabIndex = 3;
-            this.lblSensor.Text = "Sensor Picked:";
-            // 
-            // lblMeasurement
-            // 
-            this.lblMeasurement.AutoSize = true;
-            this.lblMeasurement.Location = new System.Drawing.Point(148, 67);
-            this.lblMeasurement.Name = "lblMeasurement";
-            this.lblMeasurement.Size = new System.Drawing.Size(37, 13);
-            this.lblMeasurement.TabIndex = 4;
-            this.lblMeasurement.Text = "Value:";
             // 
             // btnToggleSensor
             // 
-            this.btnToggleSensor.Location = new System.Drawing.Point(12, 50);
+            this.btnToggleSensor.Location = new System.Drawing.Point(12, 42);
             this.btnToggleSensor.Name = "btnToggleSensor";
             this.btnToggleSensor.Size = new System.Drawing.Size(96, 26);
             this.btnToggleSensor.TabIndex = 5;
@@ -119,7 +72,7 @@
             // 
             this.chckSensor.AutoSize = true;
             this.chckSensor.Enabled = false;
-            this.chckSensor.Location = new System.Drawing.Point(114, 56);
+            this.chckSensor.Location = new System.Drawing.Point(114, 48);
             this.chckSensor.Name = "chckSensor";
             this.chckSensor.Size = new System.Drawing.Size(15, 14);
             this.chckSensor.TabIndex = 6;
@@ -127,7 +80,7 @@
             // 
             // btnDataLogging
             // 
-            this.btnDataLogging.Location = new System.Drawing.Point(12, 148);
+            this.btnDataLogging.Location = new System.Drawing.Point(12, 131);
             this.btnDataLogging.Name = "btnDataLogging";
             this.btnDataLogging.Size = new System.Drawing.Size(96, 26);
             this.btnDataLogging.TabIndex = 7;
@@ -139,7 +92,7 @@
             // 
             this.chckLoggingData.AutoSize = true;
             this.chckLoggingData.Enabled = false;
-            this.chckLoggingData.Location = new System.Drawing.Point(114, 155);
+            this.chckLoggingData.Location = new System.Drawing.Point(114, 138);
             this.chckLoggingData.Name = "chckLoggingData";
             this.chckLoggingData.Size = new System.Drawing.Size(15, 14);
             this.chckLoggingData.TabIndex = 8;
@@ -147,7 +100,7 @@
             // 
             // txtNextSample
             // 
-            this.txtNextSample.Location = new System.Drawing.Point(151, 23);
+            this.txtNextSample.Location = new System.Drawing.Point(151, 46);
             this.txtNextSample.Name = "txtNextSample";
             this.txtNextSample.ReadOnly = true;
             this.txtNextSample.Size = new System.Drawing.Size(69, 20);
@@ -156,7 +109,7 @@
             // lblNextSample
             // 
             this.lblNextSample.AutoSize = true;
-            this.lblNextSample.Location = new System.Drawing.Point(148, 7);
+            this.lblNextSample.Location = new System.Drawing.Point(148, 30);
             this.lblNextSample.Name = "lblNextSample";
             this.lblNextSample.Size = new System.Drawing.Size(70, 13);
             this.lblNextSample.TabIndex = 10;
@@ -165,7 +118,7 @@
             // lblNextLogging
             // 
             this.lblNextLogging.AutoSize = true;
-            this.lblNextLogging.Location = new System.Drawing.Point(150, 136);
+            this.lblNextLogging.Location = new System.Drawing.Point(150, 119);
             this.lblNextLogging.Name = "lblNextLogging";
             this.lblNextLogging.Size = new System.Drawing.Size(73, 13);
             this.lblNextLogging.TabIndex = 12;
@@ -173,7 +126,7 @@
             // 
             // txtNextLogging
             // 
-            this.txtNextLogging.Location = new System.Drawing.Point(151, 152);
+            this.txtNextLogging.Location = new System.Drawing.Point(151, 135);
             this.txtNextLogging.Name = "txtNextLogging";
             this.txtNextLogging.ReadOnly = true;
             this.txtNextLogging.Size = new System.Drawing.Size(69, 20);
@@ -186,7 +139,7 @@
             // lblLogNumber
             // 
             this.lblLogNumber.AutoSize = true;
-            this.lblLogNumber.Location = new System.Drawing.Point(9, 106);
+            this.lblLogNumber.Location = new System.Drawing.Point(150, 185);
             this.lblLogNumber.Name = "lblLogNumber";
             this.lblLogNumber.Size = new System.Drawing.Size(75, 13);
             this.lblLogNumber.TabIndex = 15;
@@ -194,7 +147,7 @@
             // 
             // txtLogNumber
             // 
-            this.txtLogNumber.Location = new System.Drawing.Point(12, 122);
+            this.txtLogNumber.Location = new System.Drawing.Point(153, 201);
             this.txtLogNumber.Name = "txtLogNumber";
             this.txtLogNumber.ReadOnly = true;
             this.txtLogNumber.Size = new System.Drawing.Size(69, 20);
@@ -203,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 7);
+            this.label1.Location = new System.Drawing.Point(265, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 16;
@@ -213,9 +166,34 @@
             // 
             this.tmrNextLogging.Tick += new System.EventHandler(this.tmrNextLogging_Tick);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(505, 24);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(505, 192);
+            this.ClientSize = new System.Drawing.Size(505, 232);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLogNumber);
             this.Controls.Add(this.txtLogNumber);
@@ -227,12 +205,12 @@
             this.Controls.Add(this.btnDataLogging);
             this.Controls.Add(this.chckSensor);
             this.Controls.Add(this.btnToggleSensor);
-            this.Controls.Add(this.lblMeasurement);
-            this.Controls.Add(this.lblSensor);
-            this.Controls.Add(this.txtValue);
-            this.Controls.Add(this.cmbSensorPick);
             this.Controls.Add(this.txtAllSensors);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,10 +244,6 @@
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox txtAllSensors;
-        private System.Windows.Forms.ComboBox cmbSensorPick;
-        private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.Label lblSensor;
-        private System.Windows.Forms.Label lblMeasurement;
         private System.Windows.Forms.Button btnToggleSensor;
         private System.Windows.Forms.Button btnDataLogging;
         private System.Windows.Forms.CheckBox chckLoggingData;
@@ -283,6 +257,9 @@
         private System.Windows.Forms.TextBox txtLogNumber;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer tmrNextLogging;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
