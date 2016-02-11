@@ -24,10 +24,8 @@ namespace OOADP_Assignment_1
         public double LogTimer = 6;
         public int logCounterMod;
         public int logCounter = 0;
-        public string LogData = "Analog1:;\t" + "Analog2:;\t" + "Analog3:;\t" + "Analog4:;\t" + "Analog5:;\t" + "Analog6:;\t" + "Analog7:;\t" + "Analog8:;\t" + "Digital1:;\t" + "Digital2:;\t" + "Digital3:;\t" + "Digital4:;"+"\n";
+        public string LogData = "Analog1:;\t" + "Analog2:;\t" + "Analog3:;\t" + "Analog4:;\t" + "Analog5:;\t" + "Analog6:;\t" + "Analog7:;\t" + "Analog8:;\t" + "Digital1:;\t" + "Digital2:;\t" + "Digital3:;\t" + "Digital4:;" + "\n";
         public string filepath = "" + "";
-
-
 
         //Generate Sensors
         AnalogSensor Analog1 = new AnalogSensor();
@@ -49,6 +47,19 @@ namespace OOADP_Assignment_1
         {
             InitializeComponent();
             txtLogNumber.Text = "0";
+            txtLogFile.Text = ("DataLog.csv");
+            txtAllSensors.AppendText("Analog1: " + "\n");
+            txtAllSensors.AppendText("Analog2: " + "\n");
+            txtAllSensors.AppendText("Analog3: " + "\n");
+            txtAllSensors.AppendText("Analog4: " + "\n");
+            txtAllSensors.AppendText("Analog5: " + "\n");
+            txtAllSensors.AppendText("Analog6: " + "\n");
+            txtAllSensors.AppendText("Analog7: " + "\n");
+            txtAllSensors.AppendText("Analog8: " + "\n");
+            txtAllSensors.AppendText("Digital1: " + "\n");
+            txtAllSensors.AppendText("Digital2: " + "\n");
+            txtAllSensors.AppendText("Digital3: " + "\n");
+            txtAllSensors.AppendText("Digital4: " + "\n");
         }
 
         //Methods
@@ -156,17 +167,20 @@ namespace OOADP_Assignment_1
         }
         private void btnDataLogging_Click(object sender, EventArgs e)
         {
-            if (LoggingToggled == false)
+            if (SensorToggled)
             {
-                LoggingToggled = true;
-                tmrNextLogging.Start();
-                chckLoggingData.Checked = true;
-            }
-            else
-            {
-                LoggingToggled = false;
-                tmrNextLogging.Stop();
-                chckSensor.Checked = false;
+                if (LoggingToggled == false)
+                {
+                    LoggingToggled = true;
+                    tmrNextLogging.Start();
+                    chckLoggingData.Checked = true;
+                }
+                else
+                {
+                    LoggingToggled = false;
+                    tmrNextLogging.Stop();
+                    chckLoggingData.Checked = false;
+                }
             }
         }
         //Timer Tick Logging
@@ -175,7 +189,7 @@ namespace OOADP_Assignment_1
 
             logCounter++;
             logCounterMod = logCounter / 60;
-            if (LoggingToggled)
+            if (LoggingToggled && SensorToggled)
             {
                 LogTimer -= 0.1;
                 txtNextLogging.Text = Convert.ToString(Math.Round(LogTimer, 1));
@@ -186,16 +200,24 @@ namespace OOADP_Assignment_1
                     txtLogNumber.Text = Convert.ToString(LogNum);
                     LogTimer = 6;
 
-                    LogData = Analog1.value.ToString() + ";\t" + Analog2.value.ToString() + ";\t" + Analog3.value.ToString() + ";\t" + Analog4.value.ToString() + ";\t" + Analog5.value.ToString() + ";\t" + Analog6.value.ToString() + ";\t" + Analog7.value.ToString() + ";\t" + Analog8.value.ToString() + ";\t" + Digital1.value.ToString() + ";\t" + Digital2.value.ToString() + ";\t" + Digital3.value.ToString() + ";\t" + Digital4.value.ToString() + ";\t" + "\n";
+                    LogData += Analog1.value.ToString() + ";\t" + Analog2.value.ToString() + ";\t" + Analog3.value.ToString() + ";\t" + Analog4.value.ToString() + ";\t" + Analog5.value.ToString() + ";\t" + Analog6.value.ToString() + ";\t" + Analog7.value.ToString() + ";\t" + Analog8.value.ToString() + ";\t" + Digital1.value.ToString() + ";\t" + Digital2.value.ToString() + ";\t" + Digital3.value.ToString() + ";\t" + Digital4.value.ToString() + ";\t" + "\n";
                     File.AppendAllText("DataLog.csv", LogData);
+                    LogData = "";
 
                 }
+            }
+            else
+            {
+                tmrNextLogging.Stop();
+                txtNextLogging.Clear();
+                chckLoggingData.Checked = false;
+                LoggingToggled = false;
             }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             MessageBox.Show("This app is created by Eirik Siljan as part of the course Industrial IT.", "About the application");
         }
     }

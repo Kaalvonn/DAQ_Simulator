@@ -46,6 +46,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLogFile = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,9 +193,28 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Log file:";
+            // 
+            // txtLogFile
+            // 
+            this.txtLogFile.Location = new System.Drawing.Point(12, 200);
+            this.txtLogFile.Name = "txtLogFile";
+            this.txtLogFile.ReadOnly = true;
+            this.txtLogFile.Size = new System.Drawing.Size(96, 20);
+            this.txtLogFile.TabIndex = 18;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(505, 232);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtLogFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLogNumber);
             this.Controls.Add(this.txtLogNumber);
@@ -260,6 +281,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLogFile;
     }
 }
 
